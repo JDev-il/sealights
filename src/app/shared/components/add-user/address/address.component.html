@@ -1,0 +1,43 @@
+<div class="form-array-container">
+  <h4>Address Details</h4>
+  <div class="form-array-div" [formGroup]="formGroup">
+    <!-- Address Nickname -->
+    <mat-form-field appearance="outline">
+      <mat-label>Address Nick Name</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+
+    <!-- Country Selection -->
+    <mat-form-field appearance="outline">
+      <mat-label>Country</mat-label>
+      <mat-select formControlName="country">
+        <ng-container *ngFor="let country of countriesList$ | async">
+          <mat-option [value]="country">{{ country.name }}</mat-option>
+        </ng-container>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- City Selection -->
+    <div class="city-field">
+      <mat-form-field appearance="outline">
+        <mat-label>City</mat-label>
+        <mat-select formControlName="city">
+          <ng-container *ngFor="let country of countriesList$ | async">
+              <mat-option *ngFor="let city of country.cities" [value]="city.id">
+                {{ city.name }}
+              </mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <button mat-button (click)="addCityEmitter.emit()" [disabled]="!formGroup.get('country')?.value || formGroup.get('country')?.value === null">Add City</button>
+      </div>
+    </div>
+
+    <!-- Street -->
+    <mat-form-field appearance="outline">
+      <mat-label>Street</mat-label>
+      <input matInput formControlName="street" />
+    </mat-form-field>
+  </div>
+</div>

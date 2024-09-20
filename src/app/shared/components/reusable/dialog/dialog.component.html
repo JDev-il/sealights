@@ -1,0 +1,14 @@
+<div class="dialog-container">
+  <div class="dialog-box">
+    <h3>{{data.name}}</h3>
+    <ng-container *ngIf="data.isEmpty">
+      <form [formGroup]="dialogForm">
+        <mat-form-field appearance="outline">
+          <mat-label>City</mat-label>
+          <input matInput formControlName="city" />
+        </mat-form-field>
+        <button mat-button (click)="addCity()">Add City</button>
+      </form>
+    </ng-container>
+  </div>
+</div>

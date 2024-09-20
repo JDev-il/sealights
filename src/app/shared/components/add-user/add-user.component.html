@@ -1,0 +1,28 @@
+<section class="form-wrapper">
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="form-container">
+    <div class="personal-details-container">
+      <mat-form-field appearance="outline">
+        <mat-label>Full Name</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Date of Birth</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="birthdate">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="address-details-container">
+      <div formArrayName="addresses" class="form-array">
+        <div *ngFor="let address of addresses.controls; let i = index" [formGroupName]="i">
+          <app-address [formGroup]="address" [countriesList$]="countriesList$" (addCityEmitter)="addCityDialog()"></app-address>
+          <button class="remove-address-btn" mat-button type="button" (click)="removeAddress(i)">Remove Address</button>
+        </div>
+      </div>
+      <div class="address-btn-container">
+        <button class="add-address-btn" type="button" mat-button (click)="addAddress()" [disabled]="addresses.controls.length >= 1 && addresses.invalid">Add Address</button>
+      </div>
+    </div>
+    <button class="submit-btn" type="submit" mat-button [disabled]="userForm.invalid">Save</button>
+  </form>
+</section>

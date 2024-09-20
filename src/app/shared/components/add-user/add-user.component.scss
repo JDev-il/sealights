@@ -1,0 +1,71 @@
+.form-wrapper {
+  position: relative;
+  width: 33%;
+  display: flex;
+  flex-flow: column;
+  margin: auto;
+  @media screen and (max-width: 992px) {
+    width: 85%;
+  }
+  .form-container {
+    width: 100%;
+    .personal-details-container {
+      display: flex;
+      flex-flow: column;
+    }
+    .address-details-container {
+      width: 100%;
+      overflow-x: auto;
+      overflow-y: hidden;
+      .form-array {
+        max-width: 33%;
+        display: flex;
+        margin: 0 0 15px;
+        .remove-address-btn {
+          color: var(--white);
+          background-color: var(--red);
+          height: 25px;
+          width: 70%;
+          margin: auto;
+        }
+      }
+      .address-btn-container {
+        position: relative;
+        max-width: 100%;
+        .mat-mdc-button[disabled][disabled] {
+          background-color: var(--disabled);
+          color: var(--disabled-text);
+        }
+        .add-address-btn {
+          position: fixed;
+          width: 150px;
+          @media screen and (max-width: 768px) {
+            position: relative;
+            width: 200px;
+            @media screen and (max-width: 560px) {
+              width: 100%;
+            }
+          }
+          color: var(--white);
+          background-color: var(--indigo);
+        }
+      }
+    }
+  }
+  .submit-btn {
+    position: fixed;
+    &.mat-mdc-button[disabled][disabled] {
+      background-color: var(--disabled);
+      color: var(--disabled-text);
+    }
+    margin-top: 50px;
+    width: 33%;
+    color: var(--white);
+    background-color: var(--sealights);
+    @media screen and (max-width: 560px) {
+      position: relative;
+      margin-top: 15px;
+      width: 100%;
+    }
+  }
+}

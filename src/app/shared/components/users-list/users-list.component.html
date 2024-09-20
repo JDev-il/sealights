@@ -1,0 +1,32 @@
+
+<section class="users-list-container">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+        <td mat-cell *matCellDef="let user">{{ user.id }}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+        <td mat-cell *matCellDef="let user">{{ user.name }}</td>
+      </ng-container>
+
+      <!-- Birthdate Column -->
+      <ng-container matColumnDef="birthdate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Birthdate</th>
+        <td mat-cell *matCellDef="let user">{{ user.birthdate | date }}</td>
+      </ng-container>
+
+      <!-- Addresses Count Column -->
+      <ng-container matColumnDef="addressesCount">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Addresses Count </th>
+        <td mat-cell *matCellDef="let user"> {{user.addresses?.length || 0}} </td>
+      </ng-container>
+
+      <!-- Header and Row Definitions -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+</section>
